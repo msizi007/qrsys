@@ -1,0 +1,26 @@
+{% extends 'parent/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">Verify Your Child's Account</h1>
+            <p class="lead text-muted">Please enter the OTP verification code sent to your child's email.</p>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <form method="POST" action="{{ url_for('parent.verify_student')}}">
+        <div class="mb-3">
+            <label for="OTP" class="form-label">Verification Code</label>
+            <input type="text" class="form-control" name="OTP" placeholder="Enter verification code" required>
+            <div id="codeFeedback" class="invalid-feedback">
+                Please enter the verification code.
+            </div>
+        </div>
+
+        <button type="submit" id="verifyCodeButton" class="btn btn-success">Verify Code</button>
+    </form>
+
+</div>
+{% endblock %}

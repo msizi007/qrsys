@@ -1,0 +1,57 @@
+
+{% extends 'admin/base.html' %}
+
+{% block title %}<title>Admin - Add Scanner</title>{% endblock %}
+
+{% block css %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .form-label {
+        font-weight: bold;
+    }
+    .btn-custom {
+        background-color: #007bff;
+        color: white;
+    }
+    .btn-custom:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Add Scanner</h2>
+
+    <form method="POST" action="{{ url_for('admin.add_scanner') }}">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.id.label(class="form-label") }}
+            {{ form.id(class="form-control", placeholder="101") }}
+            {% for error in form.id.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.location.label(class="form-label") }}
+            {{ form.location(class="form-control", placeholder="Ritson Gate #1") }}
+            {% for error in form.location.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ form.submit_btn.label }}</button>
+        <a href="{{ url_for('admin.scanners') }}" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+{% endblock %}
+
+{% block js %}{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-align: center;
+            font-family: monospace;
+        }
+    </style>
+    <script>
+        // Function to show texts with a delay
+        function showTexts() {
+            const texts = [
+                "Closing CV2..",
+                "Closing video capture...",
+                "Saving all recorded logs...",
+                "Happy Hacking!"
+            ];
+
+            // Display texts one by one with a delay
+            for (let i = 0; i < texts.length; i++) {
+                setTimeout(() => {
+                    const p = document.createElement('p');
+                    p.textContent = texts[i];
+                    document.body.appendChild(p);
+
+                    // On the last text, redirect or call a function
+                    if (i === texts.length - 1) {
+                        // Activate the camera after showing the last message
+                        setTimeout(() => {
+                            // Redirect to the desired route
+                            window.location.href = "{{ url_for('admin.deactivated_scanner')}}";
+                        }, 2000); // Delay before redirecting
+                    }
+                }, i * 2000); // 2000 ms (2 seconds) delay for each text
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = showTexts;
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,1 @@
+- When linking student account the OTP sent should always be 6-digits, which is not, for some reason.

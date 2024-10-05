@@ -1,0 +1,53 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}<title>Admin - Buses</title>{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Bus List</h2>
+
+    <!-- Button to Add Student -->
+    <a href="{{ url_for('admin.add_bus') }}" class="btn btn-primary mb-3">Add Bus</a>
+
+    {% if buses %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped w-100">
+            <thead class="table-dark">
+                <tr>
+                    <th>Bus Number</th>
+                    <th colspan="3">Schedule</th>
+                    <th>Driver ID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bus in buses %}
+                    <tr>
+                        <td>{{ bus.number }}</td>
+                        <td colspan="3">{{ bus.schedule }}</td>
+                        <td>{{ bus.driver_id }}</td>
+                        <!-- Edit & Delete Button (Blue Pen Icon) -->
+                        <td>
+                            <a href="{{ url_for('admin.edit_bus', bus_number=bus.number) }}" class="text-primary">
+                                <button class="btn btn-primary">Edit</button>
+                            </a>
+                            <a href="{{ url_for('admin.delete_bus', bus_number=bus.number) }}" class="text-danger">
+                                <button class="btn btn-danger">X</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            No Buses available.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block js %}{% endblock %}

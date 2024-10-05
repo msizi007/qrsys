@@ -1,0 +1,70 @@
+
+{% extends 'admin/base.html' %}
+
+{% block title %}<title>Admin - Add Bus</title>{% endblock %}
+
+{% block css %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .form-label {
+        font-weight: bold;
+    }
+    .btn-custom {
+        background-color: #007bff;
+        color: white;
+    }
+    .btn-custom:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Add Bus</h2>
+
+    <form method="POST" action="{{ url_for('admin.add_bus') }}">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.number.label(class="form-label") }}
+            {{ form.number(class="form-control", placeholder="1234") }}
+            {% for error in form.number.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.schedule.label(class="form-label") }}
+            {{ form.schedule(class="form-control", placeholder="A to B - 07:15 \nB to A - 14:20") }}
+            {% for error in form.schedule.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.driver_id.label(class="form-label") }}
+            <select class="form-control" id="driver_id" name="driver_id">
+                <option value="" disabled selected>None</option>  <!-- Default option -->
+                {% for value, label in form.driver_id.choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+            {% for error in form.driver_id.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-custom">{{ form.submit_btn.label }}</button>
+        <a href="{{ url_for('admin.buses') }}" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+{% endblock %}
+
+{% block js %}{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}
+<title>Edit Parent</title>
+{% endblock %}
+
+{% block css %}
+<style>
+    .form-container {
+        margin-top: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit Parent</h2>
+    <form method="POST" action="{{ url_for('admin.edit_parent', parent_id=parent.id) }}">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.id.label(class="form-label") }}
+            {{ form.id(class_="form-control", id="number") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.first_name.label(class="form-label") }}
+            {{ form.first_name(class_="form-control", id="first_name") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.last_name.label(class="form-label") }}
+            {{ form.last_name(class_="form-control", id="last_name") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.gender.label(class="form-label") }}
+            {{ form.gender(class_="form-control", id="gender") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.DOB.label(class="form-label") }}
+            {{ form.DOB(class_="form-control", id="DOB") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.physical_address.label(class="form-label") }}
+            {{ form.physical_address(class_="form-control", id="physical_address") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.email_address.label(class="form-label") }}
+            {{ form.email_address(class_="form-control", id="email_address") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.phone_number.label(class="form-label") }}
+            {{ form.phone_number(class_="form-control", id="phone_number") }}
+        </div>
+        <!--Display Errors -->
+        {% if form.errors %}
+    <div class="alert alert-danger">
+            <ul>
+                {% for field, errors in form.errors.items() %}
+                    <li>
+                        <strong>{{ field | capitalize }}:</strong> <!-- Display the field name as a bold title -->
+                        <ul>
+                            {% for error in errors %}
+                                <li>{{ error }}</li> <!-- Display each error message for the field -->
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+    </div>
+{% endif %}
+        <button type="submit" class="btn btn-primary w-100">Update Parent</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}<title>Admin - Students</title>{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Teachers List</h2>
+
+    <!-- Button to Add Student -->
+    <a href="{{ url_for('admin.add_teacher') }}" class="btn btn-primary mb-3">Add Teacher</a>
+
+    {% if teachers %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped w-100">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Physical Address</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers %}
+                    <tr>
+                        <td>{{ teacher.id }}</td>
+                        <td>{{ teacher.first_name }}</td>
+                        <td>{{ teacher.last_name }}</td>
+                        <td>{{ teacher.gender }}</td>
+                        <td>{{ teacher.physical_address }}</td>
+                        <td>{{ teacher.email_address }}</td>
+                        <td>{{ teacher.phone_number }}</td>
+                        <!-- Edit & Delete Button (Blue Pen Icon) -->
+                        <td>
+                            <a href="{{ url_for('admin.edit_teacher', teacher_id=teacher.id) }}" class="text-primary">
+                                <button class="btn btn-primary">Edit</button>
+                            </a>
+                            <a href="{{ url_for('admin.edit_teacher', teacher_id=teacher.id) }}" class="text-danger">
+                                <button class="btn btn-danger">X</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            No students available.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block js %}{% endblock %}

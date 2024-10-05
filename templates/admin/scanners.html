@@ -1,0 +1,60 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}<title>Admin - scanneres</title>{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">scanner List</h2>
+
+    <!-- Button to Add Student -->
+    <a href="{{ url_for('admin.add_scanner') }}" class="btn btn-primary mb-3">Add scanner</a>
+
+    {% if scanners %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped w-100">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th colspan="3">Location</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for scanner in scanners %}
+                    <tr>
+                        <td>{{ scanner.id }}</td>
+                        <td colspan="3">{{ scanner.location }}</td>
+                        {% if scanner.status == "1" %}
+                            <td>Active</td>
+                        {% else %}
+                            <td>Not Active</td>
+                        {% endif %}
+                        <!-- Edit & Delete Button (Blue Pen Icon) -->
+                        <td>
+                            {% if scanner.status == '0' %}
+                            <a href="{{ url_for('admin.activate_scanner', scanner_id=scanner.id) }}" class="text-primary">
+                                <button class="btn btn-secondary">Activate</button>
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('admin.deactivate_scanner', scanner_id=scanner.id) }}" class="text-danger">
+                                <button class="btn btn-danger">Deactivate</button>
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            No Scanners available.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block js %}{% endblock %}

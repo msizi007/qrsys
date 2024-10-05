@@ -1,0 +1,53 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<!--Content-->
+<div class="container mt-4">
+    <div class="row">
+        <div class="card col-md-4 mb-3 text-center">
+            <div class="card-body">
+                <i class="fas fa-user-graduate fa-2x mb-2"></i>
+                <h5 class="card-title">1 Student</h5>
+            </div>
+        </div>
+        <div class="card col-md-4 mb-3 text-center">
+            <div class="card-body">
+                <i class="fas fa-user-friends fa-2x mb-2"></i>
+                <h5 class="card-title">2 Parents</h5>
+            </div>
+        </div>
+        <div class="card col-md-4 mb-3 text-center">
+            <div class="card-body">
+                <i class="fas fa-chalkboard-teacher fa-2x mb-2"></i>
+                <h5 class="card-title">1 Teacher</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-md-4 mb-3 text-center">
+            <div class="card-body">
+                <i class="fas fa-bus fa-2x mb-2"></i>
+                <h5 class="card-title">1 Bus</h5>
+            </div>
+        </div>
+        <div class="card col-md-4 mb-3 text-center">
+            <div class="card-body">
+                <i class="fas fa-bus-alt fa-2x mb-2"></i>
+                <h5 class="card-title">2 Bus Drivers</h5>
+            </div>
+        </div>
+        <div class="card col-md-4 mb-3 text-center">
+            <div class="card-body">
+                <i class="fas fa-qrcode fa-2x mb-2"></i>
+                <h5 class="card-title">1 Scanner</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart Container -->
+<div class="graph-card" id="chartContainer">
+    <h4>Student Attendance Overview</h4>
+    <canvas id="attendanceChart"></canvas>
+</div>
+{% endblock %}

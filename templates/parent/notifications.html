@@ -1,0 +1,89 @@
+{% extends 'parent/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">Notifications</h1>
+            <p class="lead text-muted">Stay updated on your child's activities and important alerts in real time.</p>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="notificationFilter" class="form-label">Filter Notifications</label>
+                <select class="form-select" id="notificationFilter">
+                    <option value="all">All Notifications</option>
+                    <option value="check-in">Check-In</option>
+                    <option value="check-out">Check-Out</option>
+                    <option value="bus">Bus Activity</option>
+                    <option value="alert">Alerts</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="studentFilter" class="form-label">Select Student</label>
+            <select class="form-select" id="studentFilter">
+                <option value="student_1">John Doe</option>
+                <option value="student_2">Jane Doe</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Notifications List -->
+    <div class="list-group shadow-sm mb-5">
+        <!-- Example Notification -->
+        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">John Doe checked in at school</h5>
+                <small class="text-muted">2024-10-03 08:30 AM</small>
+            </div>
+            <span class="badge bg-success rounded-pill">Check-In</span>
+        </div>
+
+        <!-- Example Notification -->
+        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">Jane Doe missed the school bus</h5>
+                <small class="text-muted">2024-10-03 08:45 AM</small>
+            </div>
+            <span class="badge bg-danger rounded-pill">Bus Activity</span>
+        </div>
+
+        <!-- Example Notification -->
+        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">John Doe checked out from school</h5>
+                <small class="text-muted">2024-10-03 03:00 PM</small>
+            </div>
+            <span class="badge bg-primary rounded-pill">Check-Out</span>
+        </div>
+
+        <!-- Example Notification -->
+        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">Important Alert: School is closed tomorrow</h5>
+                <small class="text-muted">2024-10-02 05:00 PM</small>
+            </div>
+            <span class="badge bg-warning rounded-pill">Alert</span>
+        </div>
+
+        <!-- More notifications go here -->
+    </div>
+
+    <!-- No Notifications Message -->
+    <div class="text-center" id="noNotifications" style="display: none;">
+        <p class="lead text-muted">No notifications to display.</p>
+    </div>
+</div>
+
+<script>
+    // Example logic for filtering notifications
+    document.getElementById('notificationFilter').addEventListener('change', function() {
+        // Logic for filtering notifications goes here
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'parent/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">Link Your Child's Account</h1>
+            <p class="lead text-muted">To link your child’s account, you must have your child's registered email with you.</p>
+        </div>
+    </div>
+
+    <!-- Linking Student Form -->
+    <form action="link_student" method="post">
+        <div class="mb-3">
+            <label for="studentNumber" class="form-label">Student Number</label>
+            <input type="number" class="form-control" id="studentNumber" name="studentNumber" placeholder="Enter student number" required>
+            <div id="studentNumberFeedback" class="invalid-feedback">
+                Please provide a valid student number.
+            </div>
+        </div>
+        <div class="mb-3"></div>
+            <label for="childEmail" class="form-label">Child's Email Address</label>
+            <input type="email" class="form-control" id="childEmail" name="childEmail" placeholder="Enter child's email" required>
+            <div id="emailFeedback" class="invalid-feedback">
+                Please provide a valid email address.
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Send Verification Code</button>
+    </form>
+
+    <!-- Success/Failure Messages -->
+    <div id="message" class="mt-4 text-center"></div>
+</div>
+{% endblock %}

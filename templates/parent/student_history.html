@@ -1,0 +1,129 @@
+{% extends 'parent/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">Student History</h1>
+            <p class="lead text-muted">Review your child's attendance, activities, and performance over the past month, semester, or year.</p>
+        </div>
+    </div>
+
+    <!-- Time Period Filter Section -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="dateRange" class="form-label">Select Time Period</label>
+                <select class="form-select" id="dateRange">
+                    <option value="last_month">Last Month</option>
+                    <option value="last_semester">Last Semester</option>
+                    <option value="last_year">Last Year</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="studentFilter" class="form-label">Select Student</label>
+            <select class="form-select" id="studentFilter">
+                <option value="student_1">John Doe</option>
+                <option value="student_2">Jane Doe</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Graphical Representation of Student History -->
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Attendance Overview</h4>
+                    <canvas id="attendanceChart" height="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Representation of Historical Activities -->
+    <div class="table-responsive shadow-sm">
+        <table class="table table-striped table-hover align-middle text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Activity</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="historyTableBody">
+                <!-- Example Row -->
+                <tr>
+                    <td>2024-09-15</td>
+                    <td><i class="bi bi-building"></i> Check-In (School)</td>
+                    <td>School Gate</td>
+                    <td><span class="badge bg-success">On-Time</span></td>
+                    <td>Attended math class on time.</td>
+                </tr>
+                <tr>
+                    <td>2024-09-20</td>
+                    <td><i class="bi bi-bus-front"></i> Bus Boarding</td>
+                    <td>Bus 12</td>
+                    <td><span class="badge bg-danger">Late</span></td>
+                    <td>Missed the bus, arrived late.</td>
+                </tr>
+                <!-- More Rows Here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card bg-light shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title">Summary of Last Semester</h3>
+                    <p class="card-text">Your child has shown overall good attendance, with 95% on-time performance for school check-ins and a slight improvement in punctuality over the semester.</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="bi bi-check-circle-fill text-success"></i> 45 school days attended.
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-check-circle-fill text-success"></i> 90% punctuality on bus boarding.
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-exclamation-circle-fill text-warning"></i> Missed the bus 3 times.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example chart data for student history (attendance)
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+    const attendanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Sep 1', 'Sep 5', 'Sep 10', 'Sep 15', 'Sep 20', 'Sep 25', 'Sep 30'],
+            datasets: [{
+                label: 'Attendance',
+                data: [95, 90, 85, 92, 88, 93, 95],
+                borderColor: '#007bff',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

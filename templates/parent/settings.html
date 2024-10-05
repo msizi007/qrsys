@@ -1,0 +1,81 @@
+{% extends 'parent/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">Settings</h1>
+            <p class="lead text-muted">Manage your account and settings below.</p>
+        </div>
+    </div>
+
+    <!-- Profile Settings -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Profile Settings</h5>
+        </div>
+        <div class="card-body">
+            <form id="profileSettingsForm">
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Change Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter new password">
+                </div>
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Account Settings -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Account Settings</h5>
+        </div>
+        <div class="card-body">
+            <form id="accountSettingsForm">
+                <div class="mb-3">
+                    <label for="language" class="form-label">Preferred Language</label>
+                    <select class="form-select" id="language">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                    </select>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="notifications">
+                    <label class="form-check-label" for="notifications">Enable Notifications</label>
+                </div>
+                <button type="submit" class="btn btn-success">Update Account Settings</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Logout Section -->
+    <div class="text-center">
+        <a href="{{ url_for('parent.index') }}" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+
+<script>
+    // Optional: Add JavaScript to handle form submission or other logic if needed
+    document.getElementById('profileSettingsForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Simulate saving settings
+        alert('Profile settings saved!');
+    });
+
+    document.getElementById('accountSettingsForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Simulate updating account settings
+        alert('Account settings updated!');
+    });
+</script>
+{% endblock %}

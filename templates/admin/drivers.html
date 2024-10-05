@@ -1,0 +1,61 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}<title>Admin - Students</title>{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Drivers List</h2>
+
+    <!-- Button to Add Student -->
+    <a href="{{ url_for('admin.add_driver') }}" class="btn btn-primary mb-3">Add Driver</a>
+
+    {% if drivers %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th colspan="2">Physical Address</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for driver in drivers %}
+                    <tr>
+                        <td>{{ driver.id }}</td>
+                        <td>{{ driver.first_name }}</td>
+                        <td>{{ driver.last_name }}</td>
+                        <td>{{ driver.gender }}</td>
+                        <td colspan="2">{{ driver.physical_address }}</td>
+                        <td>{{ driver.email_address }}</td>
+                        <td>{{ driver.phone_number }}</td>
+                        <!-- Edit & Delete Button (Blue Pen Icon) -->
+                        <td>
+                            <a href="{{ url_for('admin.edit_driver', driver_id=driver.id) }}" class="text-primary">
+                                <button class="btn btn-primary">&#9998;</button>
+                            </a>
+                            <a href="{{ url_for('admin.edit_driver', driver_id=driver.id) }}" class="text-danger">
+                                <button class="btn btn-danger">&times;</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            No Drivers available.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block js %}{% endblock %}
